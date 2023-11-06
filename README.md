@@ -37,7 +37,7 @@ Usage
 Create two folders, one is the input folder, and all the FASTQ files are placed in this folder; Another one is the output folder, 
 and the output files after execution will be in this folder.
 ```
-bash ***.sh -i ... -o ... [other options]
+bash MTBSpread.sh -i ... -o ... [other options]
 
 Options:
 -i        The folder of input FASTQ files. All the FASTQ files are in this folder. -i /path/to/input/folder
