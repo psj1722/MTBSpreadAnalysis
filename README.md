@@ -20,9 +20,9 @@ docker pull microbioinfo/mtbnetr:latest
 If species identification is required, you need to build your own library, and the method of building the library is as follows:
 ```
 Get the image 'staphb/kraken2:latest', get in your database folder and execute the following commands:
-`docker run --rm staphb/kraken2:latest kraken2-build --download-taxonomy --db Actinomycetes`
-`docker run --rm staphb/kraken2:latest kraken2-build --no-masking --download-library Actinomycetes --db Actinomycetes`
-`docker run --rm staphb/kraken2:latest kraken2-build --build --threads 8 --db Actinomycetes`
+docker run --rm staphb/kraken2:latest kraken2-build --download-taxonomy --db Actinomycetes
+docker run --rm staphb/kraken2:latest kraken2-build --no-masking --download-library Actinomycetes --db Actinomycetes
+docker run --rm staphb/kraken2:latest kraken2-build --build --threads 8 --db Actinomycetes
 ```
 If you are providing a date file, the date file format refer to the file 'date.xlsx' which we provided in the "Files" section.
 
