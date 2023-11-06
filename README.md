@@ -1,9 +1,11 @@
 # MTBSpreadAnalysis
 -------------
 
-This is a program for fast spread analysis based on nonalignment algorithms for M.tuberculosis samples, which are Fastq data under the second-generation Illumina machine. The main functions include quality detection, species identification, phylogenetic tree, propagation network.
+This is a program for fast spread analysis based on nonalignment algorithms for M.tuberculosis samples, which are Fastq data under 
+the second-generation Illumina machine. The main functions include quality detection, species identification, phylogenetic tree, 
+propagation network.
 
-Environment:
+Environment
 -------------
 Linux(centos7+)
 
@@ -25,10 +27,15 @@ docker run --rm staphb/kraken2:latest kraken2-build --no-masking --download-libr
 docker run --rm staphb/kraken2:latest kraken2-build --build --threads 8 --db Actinomycetes
 ```
 If you are providing a date file, the date file format refer to the file 'date.xlsx' which we provided in the "Files" section.
+This file contains at least two columns, the first column is the sample ID, which are the content in front of _1.fastq (.gz) 
+in the sequenced data name; The second column is the date of the sample, 0 represents the date of the earliest sample, and the 
+date of the subsequent sample is the number of months between the earliest sample. More columns are the information you want to 
+display in the graph, such as type, gender, etc.
 
-Usage：
+Usage
 -------------
-Create two folders, one is the input folder, and all the FASTQ files are placed in this folder; Another one is the output folder, and the output files after execution will be in this folder.
+Create two folders, one is the input folder, and all the FASTQ files are placed in this folder; Another one is the output folder, 
+and the output files after execution will be in this folder.
 ```
 bash ***.sh -i ... -o ... [other options]
 
