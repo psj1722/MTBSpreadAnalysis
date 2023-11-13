@@ -271,8 +271,8 @@ echo "Start geting the phylogenetic tree"
 if [[ ${tree} == "Y" ]]  ### iqtree
 then
         docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest ska map -o /outdir/reference -r /software/h37rv.fasta /outdir/merged.weeded.skf
-        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest /software/iqtree/bin/iqtree -s /outdir/reference.aln -m TIM2+I+G -b 100        
-        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir tree:v1.0.1 Rscript /script/tree.R treefile=/outdir/reference.aln.treefile treefig=/outdir/tree.png
+        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest /software/iqtree/bin/iqtree -s /outdir/reference.aln -m TIM2+I+G -b 100 -T30
+        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir tree:v1.0.1 Rscript /script/iqtree.R treefile=/outdir/reference.aln.treefile treefig=/outdir/tree.png
         if [[ -s ${outdir}/reference.aln.treefile ]]
         then
                 echo "geting the phylogenetic tree succeed"
@@ -285,7 +285,7 @@ then
         idnum=`cat ${outdir}/list_mtb.txt | wc -l`
         cat ${outdir}/snp.matrix | sed '/Sample/d' | sed "1i $idnum" | sed 's/NaN/0/g' | sed 's/\.0//g' > ${outdir}/snp_distance.txt
         docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest fastme -i /outdir/snp_distance.txt -m BioNJ
-        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir tree:v1.0.1 Rscript /script/tree.R treefile=/outdir/snp_distance.txt_fastme_tree.nwk treefig=/outdir/tree.png
+        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir tree:v1.0.1 Rscript /script/fastme.R treefile=/outdir/snp_distance.txt_fastme_tree.nwk treefig=/outdir/tree.png
         if [[ -s ${outdir}/snp_distance.txt_fastme_tree.nwk ]]
         then
                 echo "geting the phylogenetic tree succeed"
