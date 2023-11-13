@@ -271,7 +271,7 @@ echo "Start geting the phylogenetic tree"
 if [[ ${tree} == "Y" ]]  ### iqtree
 then
         docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest ska map -o /outdir/reference -r /software/h37rv.fasta /outdir/merged.weeded.skf
-        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest /software/iqtree/bin/iqtree -s /outdir/reference.aln -m TIM2+I+G -b 100 -T30
+        docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir mtb:latest /software/iqtree/bin/iqtree -s /outdir/reference.aln -m TIM2+I+G -b 100 -T ${threads}
         docker run --rm -v /tmp/:/tmp/ -v ${outdir}:/outdir tree:v1.0.1 Rscript /script/iqtree.R treefile=/outdir/reference.aln.treefile treefig=/outdir/tree.png
         if [[ -s ${outdir}/reference.aln.treefile ]]
         then
